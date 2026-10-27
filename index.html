@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>j-inking｜酒類品飲檔案</title>
+<meta name="description" content="j-inking — 酒類品飲檔案。葡萄酒、烈酒、清酒、啤酒，飲過的都在這裡。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+TC:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efe3;
+  --paper-2:#e9dec6;
+  --washi:#fcf9f2;
+  --ink:#201915;
+  --ink-soft:#4b4038;
+  --muted:#5c4f3e;
+  --line:#c9b691;
+  --wine:#6d1f2c;
+  --gold:#9c7b2e;
+  --serif:'Cormorant Garamond','Noto Serif TC',serif;
+  --body:'Noto Serif TC','Cormorant Garamond',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:72px}
+body{
+  font-family:var(--body);color:var(--ink);background-color:var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg,rgba(120,95,58,.032) 0 1px,transparent 1px 104px),
+    radial-gradient(1200px 820px at 50% -8%,rgba(255,252,244,.72),transparent 64%);
+  background-attachment:fixed;line-height:1.8;-webkit-font-smoothing:antialiased;text-wrap:pretty;
+}
+body::after{content:"";position:fixed;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--wine),rgba(109,31,44,.5));opacity:.92;z-index:60;pointer-events:none}
+a{color:var(--wine);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── header ── */
+header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(120,95,58,.22)}
+.hbar{max-width:1120px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:14px}
+.logo{font-family:'Italiana',serif;font-size:1.16rem;letter-spacing:.02em;line-height:1;color:var(--ink);opacity:.93}
+.logo i{font-style:normal;color:var(--wine)}
+.search{margin-left:auto;display:flex;align-items:center;gap:5px}
+.search .mag{color:var(--muted);font-size:.95rem;line-height:1}
+.search input{width:150px;padding:4px 2px;border:0;border-bottom:1px solid rgba(120,95,58,.5);border-radius:0;
+  background:transparent;font-family:var(--body);font-size:.79rem;letter-spacing:.1em;color:var(--ink);outline:none;
+  transition:border-color .25s,width .25s}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{border-bottom-color:var(--wine);width:196px}
+.langtoggle{display:flex;gap:10px}
+.langtoggle button{border:0;border-bottom:1px solid transparent;background:transparent;font-family:var(--body);
+  font-size:.74rem;letter-spacing:.14em;padding:2px 0;color:var(--muted);cursor:pointer;transition:.25s}
+.langtoggle button.on{color:var(--ink);border-bottom-color:var(--wine)}
+.langtoggle button:hover:not(.on){color:var(--wine)}
+
+/* ── masthead ── */
+.masthead{padding:60px 24px 22px;text-align:center}
+.masthead .big{font-family:var(--serif);font-size:clamp(3.8rem,12vw,6.8rem);font-weight:500;line-height:1;
+  letter-spacing:.2em;color:var(--ink);text-indent:.2em}
+.masthead .sub{font-family:var(--serif);font-size:.92rem;letter-spacing:.36em;color:var(--ink-soft);margin-top:20px}
+.masthead .rule{width:34px;height:1px;background:var(--wine);opacity:.6;margin:18px auto 0}
+
+/* ── stats ── */
+.stats{max-width:1120px;margin:18px auto 0;padding:0 24px;display:flex;justify-content:center;flex-wrap:wrap;
+  border-top:1px solid rgba(120,95,58,.16);border-bottom:1px solid rgba(120,95,58,.16)}
+.stat{flex:1 1 0;min-width:120px;text-align:center;padding:16px 8px;border-right:1px solid rgba(120,95,58,.13)}
+.stat:last-child{border-right:0}
+.stat .v{font-family:var(--serif);font-size:1.7rem;line-height:1;color:var(--ink)}
+.stat .k{font-size:.67rem;letter-spacing:.18em;color:var(--muted);margin-top:7px}
+
+/* ── coverage ── */
+.cov{max-width:1120px;margin:0 auto;padding:34px 24px 6px}
+.cov .h{display:flex;align-items:baseline;gap:12px}
+.cov .h .k{font-family:var(--serif);font-size:.86rem;letter-spacing:.34em;color:var(--ink-soft)}
+.cov .h .n{font-size:.72rem;color:var(--muted);letter-spacing:.1em}
+.cov .h .n b{color:var(--wine);font-weight:500}
+.cov .h .bar{flex:1;height:2px;background:rgba(120,95,58,.14);margin:0 8px 6px;position:relative;overflow:hidden}
+.cov .h .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--wine);width:0;transition:width .8s ease}
+.covgroup{margin-top:12px}
+.covgroup .gl{font-size:.6rem;letter-spacing:.26em;color:var(--muted);margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px}
+.chip{font-size:.73rem;letter-spacing:.03em;color:var(--ink-soft);border:1px solid rgba(120,95,58,.3);
+  padding:2px 8px;border-radius:1px;background:rgba(255,252,246,.55);cursor:pointer;transition:.25s}
+.chip:hover{border-color:var(--wine);color:var(--wine)}
+.chip.have{background:rgba(109,31,44,.9);border-color:var(--wine);color:#fbf3ee}
+.chip.p{font-weight:500}
+.chip sup{font-size:.5rem;opacity:.6;margin-left:2px}
+
+/* ── filters ── */
+.filters{max-width:1100px;margin:26px auto 0;padding:0 24px;display:flex;flex-wrap:wrap;justify-content:center}
+.pill{border:0;border-bottom:1px solid transparent;background:transparent;color:var(--muted);padding:3px 1px 4px;
+  margin:0 10px;font-family:var(--body);font-size:.79rem;letter-spacing:.13em;cursor:pointer;transition:.25s}
+.pill:hover{color:var(--wine);border-bottom-color:rgba(109,31,44,.32)}
+.pill.active{color:var(--ink);border-bottom-color:var(--wine);font-weight:500}
+.fbar{max-width:1100px;margin:12px auto 0;padding:10px 24px 0;display:flex;gap:6px;justify-content:center;
+  align-items:center;flex-wrap:wrap;border-top:1px solid rgba(120,95,58,.14)}
+.fbar .lab{font-size:.66rem;color:var(--muted);letter-spacing:.22em;margin-right:6px;white-space:nowrap}
+
+/* ── grid ── */
+.sechead{max-width:1120px;margin:0 auto;padding:30px 24px 0;display:flex;align-items:baseline;gap:12px}
+.sechead .k{font-family:var(--serif);font-size:.84rem;letter-spacing:.36em;color:var(--ink-soft)}
+.sechead .n{font-size:.72rem;color:var(--muted);letter-spacing:.1em}
+.sechead .sort{margin-left:auto;font-size:.68rem;color:var(--muted);letter-spacing:.12em;border:0;
+  border-bottom:1px solid rgba(120,95,58,.45);background:transparent;padding:2px 0;cursor:pointer;transition:.25s}
+.sechead .sort:hover{color:var(--wine);border-bottom-color:var(--wine)}
+.grid{max-width:1120px;margin:0 auto;padding:22px 24px 46px;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(22px,3.2vw,42px)}
+.card{background:var(--washi);border:1px solid rgba(70,52,30,.13);border-radius:1px;overflow:hidden;cursor:pointer;
+  position:relative;opacity:0;transform:translateY(14px);transition:transform .5s cubic-bezier(.22,.61,.36,1),
+  border-color .3s,opacity .7s,box-shadow .4s}
+.card.in{opacity:1;transform:none}
+.card:hover{transform:translateY(-3px);border-color:rgba(70,52,30,.3);
+  box-shadow:0 12px 30px -22px rgba(50,35,15,.45)}
+.card:hover .nm{color:var(--wine)}
+.card .shot{width:100%;aspect-ratio:3/4;display:block;object-fit:cover;background:var(--paper-2);
+  filter:saturate(.74) contrast(1.04) brightness(1.01);
+  transition:filter .9s cubic-bezier(.22,.61,.36,1),transform 1.2s cubic-bezier(.22,.61,.36,1)}
+.card:hover .shot{filter:saturate(1) contrast(1) brightness(1);transform:scale(1.015)}
+.noimg{width:100%;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:6px;background:linear-gradient(180deg,#f2ead9,#e7dcc5);position:relative;overflow:hidden}
+.noimg::after{content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(0deg,rgba(120,98,64,.05) 0 1px,transparent 1px 5px);opacity:.7}
+.noimg .enso{position:absolute;width:62%;height:62%;color:rgba(140,114,74,.28)}
+.noimg .btl{position:relative;width:44%;height:auto;color:rgba(96,76,46,.5)}
+.noimg .btl{filter:drop-shadow(0 1px 0 rgba(255,255,255,.5))}
+.noimg em{position:relative;font-style:normal;font-size:.56rem;letter-spacing:.2em;color:var(--muted);opacity:.75}
+.seal{position:absolute;top:11px;right:11px;z-index:2;background:rgba(252,249,242,.94);border:1px solid var(--wine);
+  color:var(--wine);font-family:var(--serif);font-size:.82rem;line-height:1;padding:5px 6px;border-radius:1px;
+  transform:rotate(-1.5deg);letter-spacing:0}
+.tag{position:absolute;top:11px;left:11px;z-index:2;background:rgba(252,249,242,.9);color:var(--wine);
+  border:1px solid rgba(109,31,44,.45);font-size:.58rem;letter-spacing:.18em;padding:2px 6px;border-radius:1px}
+.body{padding:15px 17px 19px;border-top:1px solid rgba(70,52,30,.09)}
+.nm{font-family:var(--serif);font-size:1.24rem;font-weight:600;letter-spacing:.03em;line-height:1.35;
+  transition:color .35s}
+.pr{font-size:.78rem;color:#3a2f26;letter-spacing:.04em;margin-top:5px;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis}
+.rg{font-size:.74rem;color:#4b4038;letter-spacing:.04em;margin-top:3px}
+.gr{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px}
+.gr span{font-size:.66rem;color:#3f342b;letter-spacing:.03em;border:1px solid rgba(120,95,58,.34);
+  padding:1px 6px;border-radius:1px}
+.empty{max-width:1120px;margin:0 auto;padding:40px 24px 70px;text-align:center;color:var(--muted);
+  font-size:.82rem;letter-spacing:.14em}
+
+/* ── journal ── */
+.journal{max-width:1120px;margin:0 auto;padding:10px 24px 40px}
+.jhead{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid rgba(70,52,30,.14)}
+.jhead .k{font-family:var(--serif);font-size:.82rem;letter-spacing:.36em;color:var(--ink-soft)}
+.jhead .n{font-size:.7rem;color:var(--muted);letter-spacing:.1em}
+.jrow{display:grid;grid-template-columns:96px 1fr 1fr 56px;gap:12px;padding:10px 6px;margin:0 -6px;
+  border-bottom:1px dashed rgba(70,52,30,.13);font-size:.79rem;color:var(--ink-soft);cursor:pointer;transition:.25s}
+.jrow:hover{background:rgba(255,252,246,.7);padding-left:12px}
+.jrow:hover .jn{color:var(--wine)}
+.jrow .jd{color:var(--muted);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.jrow .jn{font-family:var(--serif);font-size:.95rem;color:var(--ink);letter-spacing:.02em;transition:color .25s}
+.jrow .jv{color:var(--muted);font-size:.73rem}
+.jrow .js{text-align:right;font-family:var(--serif);color:var(--wine);font-size:.86rem}
+.jempty{font-size:.75rem;color:var(--muted);letter-spacing:.12em;padding:14px 0}
+
+/* ── modal ── */
+.modal{position:fixed;inset:0;background:rgba(30,22,14,.6);backdrop-filter:blur(6px);display:none;
+  align-items:center;justify-content:center;padding:18px;z-index:80}
+.modal.open{display:flex}
+.mbox{background:var(--washi);max-width:640px;width:100%;max-height:90vh;overflow:auto;border-radius:2px;
+  box-shadow:0 34px 90px -24px rgba(15,9,2,.6);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.mbox::-webkit-scrollbar{width:8px}
+.mbox::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px;border:2px solid var(--washi)}
+.mbox .mimg{width:100%;max-height:58vh;object-fit:contain;display:block;background:var(--paper-2);
+  border-bottom:1px solid rgba(70,52,30,.1)}
+.mbody{padding:24px 28px 30px;position:relative}
+.mbody h2{font-family:var(--serif);font-size:1.9rem;font-weight:600;letter-spacing:.03em;line-height:1.25;padding-right:44px}
+.mbody .sub{font-size:.8rem;color:var(--ink-soft);letter-spacing:.08em;margin-top:6px}
+.rows{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;margin:16px 0 6px;font-size:.78rem;color:var(--ink-soft)}
+.rows div{display:flex;gap:8px}
+.rows b{color:var(--muted);font-weight:400;letter-spacing:.12em;min-width:64px}
+.sat{margin-top:16px;border-top:1px solid rgba(120,95,58,.26);padding-top:14px}
+.sat .blk{margin-bottom:12px}
+.sat .blk h3{font-family:var(--serif);font-size:.82rem;letter-spacing:.3em;color:var(--wine);font-weight:500;
+  margin-bottom:6px}
+.sat .kv{display:grid;grid-template-columns:74px 1fr;gap:3px 10px;font-size:.77rem;color:var(--ink-soft)}
+.sat .kv b{color:var(--muted);font-weight:400;letter-spacing:.1em}
+.note{font-size:.88rem;color:var(--ink-soft);line-height:2;margin-top:14px;padding-top:14px;
+  border-top:1px solid rgba(120,95,58,.2);font-style:italic}
+.mclose{position:absolute;top:12px;right:14px;background:rgba(252,249,242,.94);border:1px solid var(--line);
+  border-radius:999px;width:30px;height:30px;font-size:.95rem;color:var(--ink-soft);cursor:pointer;line-height:28px;
+  text-align:center;z-index:2}
+.mclose:hover{border-color:var(--wine);color:var(--wine)}
+
+footer{text-align:center;padding:34px 24px 56px;color:var(--muted);font-size:.67rem;letter-spacing:.14em;line-height:2.2}
+footer .dot{opacity:.4;margin:0 6px}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card{opacity:1;transform:none}}
+@media(max-width:560px){
+  .masthead{padding:46px 20px 20px}
+  .grid{padding:20px 16px 60px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .nm{font-size:1.02rem}
+  .stat .v{font-size:1.35rem}
+  .hbar{padding:10px 14px;gap:10px}
+  .search input{width:104px}.search input:focus{width:126px}
+  .jrow{grid-template-columns:74px 1fr 48px;font-size:.74rem}
+  .jrow .jv{display:none}
+  .rows{grid-template-columns:1fr}
+  .chip{font-size:.74rem;padding:4px 9px}
+  .grid{gap:14px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hbar">
+    <div class="logo">j-<i>ink</i>ing</div>
+    <div class="search"><span class="mag">⌕</span><input id="q" type="search" placeholder="搜尋酒名、產區、品種…" autocomplete="off"></div>
+    <div class="langtoggle" id="lang"><button data-l="zh" class="on">中</button><button data-l="en">EN</button></div>
+  </div>
+</header>
+
+<div class="masthead">
+  <div class="big">醇</div>
+  <div class="sub" id="tagline">酒類品飲檔案</div>
+  <div class="rule"></div>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="cov">
+  <div class="h">
+    <span class="k" id="covk">WSET L2 品種</span>
+    <span class="bar"><i></i></span>
+    <span class="n" id="covn"></span>
+  </div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<div class="filters" id="tyfilters"></div>
+<div class="fbar" id="cfilters"></div>
+
+<div class="sechead">
+  <span class="k" id="seck">酒藏</span>
+  <span class="n" id="secn"></span>
+  <button class="sort" id="sortbtn"></button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="journal">
+  <div class="jhead"><span class="k" id="jk">日誌</span><span class="n" id="jn"></span></div>
+  <div id="jlist"></div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<footer>
+  <span id="ft1">j-inking</span><span class="dot">·</span><span id="ft2">飲過的，記下來</span>
+</footer>
+
+<script>
+const CATALOG = [{"key":"merlot","en":"Merlot","cn":"梅洛","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: Bordeaux, Saint-Émilion, PomeroI  USA: California, Napa Valley"],"gis_raw":"GIs within the EU PGI production • France: Pays d‘Oc PDOs • France: Bordeaux, Saint-Émilion, PomeroI GIs from other wine-producing countries: USA: California, Napa Valley, Sonoma Chile: Central Valley South Africa: Stell"},{"key":"cabernet-sauvignon","en":"Cabernet Sauvignon","cn":"卡本內蘇維濃","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: Bordeaux, Haut-Médoc, Pauillac, Margaux, Graves, Pessac-Léogna"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: Bordeaux, Haut-Médoc, Pauillac, Margaux, Graves, Pessac-Léognan GIs from other wine-producing countries: USA: California, Napa Valley (Oakville, Rutherf"},{"key":"syrah","en":"Syrah/Shiraz","cn":"希哈","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: - Northern Rhône: Crozes-Hermitage, Hermitage, Côte Rôtie - La"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: - Northern Rhône: Crozes-Hermitage, Hermitage, Côte Rôtie - Languedoc-Roussillon: Minervois GIs from other wine-producing countries: Australia: South Ea"},{"key":"pinot-noir","en":"Pinot Noir","cn":"黑皮諾","colour":"red","principal":true,"gis":["France: Bourgogne/Burgundy, Gevrey-Chambertin, Nuits-Saint-Georges, Be"],"gis_raw":"GIs within the EU PDOs • France: Bourgogne/Burgundy, Gevrey-Chambertin, Nuits-Saint-Georges, Beaune, Pommard GIs from other wine-producing countries: USA: Sonoma, Los Carneros, Santa Barbara County, Oregon Chile: Casabla"},{"key":"chardonnay","en":"Chardonnay","cn":"夏多內","colour":"white","principal":true,"gis":["France: Pays d'Oc","France: Bourgogne/Burgundy, Chablis, Puligny-Montrachet, Meursault, Mâ"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: Bourgogne/Burgundy, Chablis, Puligny-Montrachet, Meursault, Mâcon, Pouilly-Fuissé GIs from other wine-producing countries: USA: California, Sonoma, Los "},{"key":"riesling","en":"Riesling","cn":"麗絲玲","colour":"white","principal":true,"gis":["France: Alsace","Germany: Mosel, Rheingau, Pfalz  Australia: Clare Valley, Eden Valley"],"gis_raw":"GIs within the EU PDOs • France: Alsace • Germany: Mosel, Rheingau, Pfalz GIs from other wine-producing countries: Australia: Clare Valley, Eden Valley"},{"key":"sauvignon-blanc","en":"Sauvignon Blanc","cn":"白蘇維濃","colour":"white","principal":true,"gis":["France: Pays d'Oc","France: - Loire: Sancerre, Pouilly-Fumé, Touraine - Bordeaux: Bordeaux"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: - Loire: Sancerre, Pouilly-Fumé, Touraine - Bordeaux: Bordeaux, Graves, Pessac-Léognan GIs from other wine-producing countries: USA: Napa Valley Chile: "},{"key":"pinot-gris","en":"Pinot Gris / Pinot Grigio","cn":"灰皮諾","colour":"white","principal":false,"gis":["Italy: Veneto","France: Alsace","Italy: Delle Venezie, Friuli-Venezia Giulia Regionally important label"],"gis_raw":"GIs within the EU PGI production • Italy: Veneto PDOs • France: Alsace • Italy: Delle Venezie, Friuli-Venezia Giulia Regionally important labelling terms indicating style and quality of wines made from the principal grap"},{"key":"gamay","en":"Gamay","cn":"加美","colour":"red","principal":false,"gis":["GIs France: Beaujolais, Beaujolais Villages, Beaujolais Cru (Fleurie)"],"gis_raw":"GIs France: Beaujolais, Beaujolais Villages, Beaujolais Cru (Fleurie)"},{"key":"grenache","en":"Grenache/Garnacha","cn":"格那希","colour":"red","principal":true,"gis":["GIs France:","Southern Rhône: Côtes du Rhône, Côtes du Rhône Villages, Châteauneuf-d","Languedoc-Roussillon and Provence: Minervois, Côtes de Provence Spain:"],"gis_raw":"GIs France: • Southern Rhône: Côtes du Rhône, Côtes du Rhône Villages, Châteauneuf-du-Pape • Languedoc-Roussillon and Provence: Minervois, Côtes de Provence Spain: Rioja, Navarra, Priorat Australia: Barossa Valley, McLar"},{"key":"tempranillo","en":"Tempranillo","cn":"田帕尼優","colour":"red","principal":false,"gis":["GIs Spain: Rioja, Ribera del Duero, Catalunya"],"gis_raw":"GIs Spain: Rioja, Ribera del Duero, Catalunya"},{"key":"nebbiolo","en":"Nebbiolo","cn":"內比歐露","colour":"red","principal":false,"gis":["GIs Italy: Barolo, Barbaresco"],"gis_raw":"GIs Italy: Barolo, Barbaresco"},{"key":"barbera","en":"Barbera","cn":"巴貝拉","colour":"red","principal":false,"gis":["GIs Italy: Barbera d'Asti"],"gis_raw":"GIs Italy: Barbera d’Asti"},{"key":"sangiovese","en":"Sangiovese","cn":"山吉歐維榭","colour":"red","principal":false,"gis":["GIs Italy: Chianti, Chianti Classico, Brunello di Montalcino"],"gis_raw":"GIs Italy: Chianti, Chianti Classico, Brunello di Montalcino"},{"key":"corvina","en":"Corvina","cn":"科維納","colour":"red","principal":false,"gis":["GIs Italy: Valpolicella, Amarone della Valpolicella, Recioto della Val"],"gis_raw":"GIs Italy: Valpolicella, Amarone della Valpolicella, Recioto della Valpolicella"},{"key":"montepulciano","en":"Montepulciano","cn":"蒙提布希亞諾","colour":"red","principal":false,"gis":["GIs Italy: Montepulciano d'Abruzzo 13 2 Learning Outcomes"],"gis_raw":"GIs Italy: Montepulciano d’Abruzzo 13 2 Learning Outcomes"},{"key":"zinfandel","en":"Zinfandel/Primitivo","cn":"金芬黛","colour":"red","principal":false,"gis":["GIs USA: California Italy: Puglia"],"gis_raw":"GIs USA: California Italy: Puglia"},{"key":"pinotage","en":"Pinotage","cn":"皮諾塔吉","colour":"red","principal":false,"gis":["GIs South Africa: Western Cape"],"gis_raw":"GIs South Africa: Western Cape"},{"key":"carmenere","en":"Carmenère","cn":"卡門內爾","colour":"red","principal":false,"gis":["GIs Chile: Central Valley"],"gis_raw":"GIs Chile: Central Valley"},{"key":"malbec","en":"Malbec","cn":"馬爾貝克","colour":"red","principal":false,"gis":["GIs Argentina: Mendoza White grape varieties Characteristics Colour, s"],"gis_raw":"GIs Argentina: Mendoza White grape varieties Characteristics Colour, sugar (potential alcohol), acidity, aromas and flavours"},{"key":"chenin-blanc","en":"Chenin Blanc","cn":"白詩南","colour":"white","principal":false,"gis":["GIs France: Vouvray South Africa: Western Cape"],"gis_raw":"GIs France: Vouvray South Africa: Western Cape"},{"key":"semillon","en":"Sémillon","cn":"塞美蓉","colour":"white","principal":false,"gis":["GIs France: Sauternes Australia: Hunter Valley, Barossa Valley"],"gis_raw":"GIs France: Sauternes Australia: Hunter Valley, Barossa Valley"},{"key":"viognier","en":"Viognier","cn":"維歐尼耶","colour":"white","principal":false,"gis":["GIs France:","Northern Rhône: Condrieu"],"gis_raw":"GIs France: • Northern Rhône: Condrieu"},{"key":"gewurztraminer","en":"Gewurztraminer","cn":"格烏茲塔明那","colour":"white","principal":false,"gis":["GIs France: Alsace, Alsace Grand Cru"],"gis_raw":"GIs France: Alsace, Alsace Grand Cru"},{"key":"verdicchio","en":"Verdicchio","cn":"維蒂奇諾","colour":"white","principal":false,"gis":["GIs Italy: Verdicchio dei Castelli di Jesi"],"gis_raw":"GIs Italy: Verdicchio dei Castelli di Jesi"},{"key":"cortese","en":"Cortese","cn":"柯帝士","colour":"white","principal":false,"gis":["GIs Italy: Gavi"],"gis_raw":"GIs Italy: Gavi"},{"key":"garganega","en":"Garganega","cn":"卡爾卡內加","colour":"white","principal":false,"gis":["GIs Italy: Soave, Recioto di Soave"],"gis_raw":"GIs Italy: Soave, Recioto di Soave"},{"key":"fiano","en":"Fiano","cn":"菲亞諾","colour":"white","principal":false,"gis":["GIs Italy: Fiano di Avellino"],"gis_raw":"GIs Italy: Fiano di Avellino"},{"key":"albarino","en":"Albariño","cn":"阿爾巴利諾","colour":"white","principal":false,"gis":["GIs Spain: Rías Baixas"],"gis_raw":"GIs Spain: Rías Baixas"},{"key":"furmint","en":"Furmint","cn":"富爾民特","colour":"white","principal":false,"gis":["GIs Hungary: Tokaj"],"gis_raw":"GIs Hungary: Tokaj"}];
+const TASTINGS = [{"id":"sample-03","sample":true,"date":"","name":"Sauternes","producer":"","vintage":null,"type":"white","country":"France","region":"Bordeaux · Sauternes","appellation":"Sauternes","grapes":["Sémillon","Sauvignon Blanc"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium","colour":"deep gold"},"nose":{"condition":"clean","intensity":"pronounced","aroma":["dried apricot","honey","orange marmalade","saffron"],"development":"developing"},"palate":{"sweetness":"sweet","acidity":"medium","tannin":null,"alcohol":"medium","body":"full","flavour":["honey","apricot","ginger"],"finish":"long"},"conclusion":{"quality":"very good","price":"","ageing":"can age"}},"score":null,"note":"樣本卡：甜酒如何用高酸平衡糖分 — 這是你考 L2 最容易寫漏的一句。"},{"id":"sample-01","sample":true,"date":"","name":"Chablis","producer":"","vintage":null,"type":"white","country":"France","region":"Burgundy · Chablis","appellation":"Chablis","grapes":["Chardonnay"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium","colour":"medium lemon"},"nose":{"condition":"clean","intensity":"medium","aroma":["green apple","lemon","wet stone"],"development":"developing"},"palate":{"sweetness":"dry","acidity":"high","tannin":null,"alcohol":"medium","body":"medium","flavour":["green apple","citrus","chalk"],"finish":"medium"},"conclusion":{"quality":"good","price":"","ageing":"drink now"}},"score":null,"note":"樣本卡：示範一條記錄長甚麼樣。正式記錄會由你每次飲完之後填。"},{"id":"sample-02","sample":true,"date":"","name":"Beaujolais Villages","producer":"","vintage":null,"type":"red","country":"France","region":"Beaujolais","appellation":"Beaujolais Villages","grapes":["Gamay"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium(-)","colour":"medium purple"},"nose":{"condition":"clean","intensity":"medium(+)","aroma":["raspberry","cherry","violet"],"development":"developing"},"palate":{"sweetness":"dry","acidity":"high","tannin":"low","alcohol":"medium","body":"light","flavour":["red cherry","cranberry"],"finish":"medium(-)"},"conclusion":{"quality":"good","price":"","ageing":"drink now, not suitable for ageing"}},"score":null,"note":"樣本卡：Gamay 低單寧、高酸、輕酒體 — 用來校正你對『輕』和『高酸』的刻度。"}];
+
+const T = {
+  zh:{tagline:'酒類品飲檔案', covk:'WSET L2 品種', sec:'酒藏', journal:'日誌', sort:'最新優先', sortScore:'按分數',
+      all:'全部', empty:'還沒有記錄。下一支酒，就是第一格。',
+      count:(n)=>`${n} 支`, tasted:'已嚐', of:'/',
+      k_bottles:'支', k_grapes:'品種', k_countries:'國家', k_avg:'平均分'},
+  en:{tagline:'a drinking archive', covk:'WSET L2 VARIETIES', sec:'CELLAR', journal:'JOURNAL', sort:'Newest first', sortScore:'By score',
+      all:'All', empty:'No records yet. The next bottle is the first card.',
+      count:(n)=>`${n} bottles`, tasted:'tasted', of:'/',
+      k_bottles:'Bottles', k_grapes:'Varieties', k_countries:'Countries', k_avg:'Avg score'}
+};
+const TYPE = {
+  red:['紅酒','Red'], white:['白酒','White'], rose:['粉紅','Rosé'], sparkling:['氣泡','Sparkling'],
+  fortified:['加烈','Fortified'], spirit:['烈酒','Spirit'], sake:['清酒','Sake'], beer:['啤酒','Beer']
+};
+let LANG='zh', TYPE_FILTER='all', COUNTRY_FILTER='all', GRAPE_FILTER='', QUERY='', BY_SCORE=false;
+
+const $=(s)=>document.querySelector(s);
+const esc=(s)=>String(s==null?'':s).replace(/[&<>"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const t=(k)=>T[LANG][k];
+const nameOf=(g)=>{const c=CATALOG.find(x=>x.key===g||x.en===g||x.cn===g);return c?(LANG==='zh'?c.cn:c.en):g;};
+const typeOf=(ty)=>TYPE[ty]?TYPE[ty][LANG==='zh'?0:1]:ty;
+
+function realTastings(){return TASTINGS.filter(x=>x.date||x.producer||x.name);}
+
+function renderStats(){
+  const list=realTastings();
+  const grapes=new Set(); const countries=new Set(); const scores=[];
+  list.forEach(x=>{ (x.grapes||[]).forEach(g=>grapes.add(g)); if(x.country)countries.add(x.country); if(x.score)scores.push(x.score); });
+  const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):'—';
+  const cells=[[list.length,t('k_bottles')],[grapes.size,t('k_grapes')],[countries.size,t('k_countries')],[avg,t('k_avg')]];
+  $('#stats').innerHTML=cells.map(([v,k])=>`<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join('');
+  $('#tagline').textContent=t('tagline');
+}
+
+function renderCoverage(){
+  const list=realTastings();
+  const have=new Set();
+  list.forEach(x=>(x.grapes||[]).forEach(g=>have.add(g)));
+  const isHave=(c)=>have.has(c.key)||have.has(c.en)||have.has(c.cn)||
+      (c.key==='semillon'&&have.has('Sémillon'))||(c.key==='albarino'&&have.has('Albariño'));
+  const n=CATALOG.filter(isHave).length;
+  $('#covk').textContent=t('covk');
+  $('#covn').innerHTML=`${t('tasted')} <b>${n}</b> / ${CATALOG.length}`;
+  const bar=document.querySelector('.cov .h .bar i');
+  if(bar) bar.style.width=(100*n/CATALOG.length).toFixed(1)+'%';
+  const chip=(c)=>{const hv=isHave(c); const label=LANG==='zh'?c.cn:c.en;
+    return `<span class="chip${hv?' have':''}${c.principal?' p':''}" data-g="${esc(c.en)}" title="${esc(c.en)}">${esc(label)}</span>`;};
+  const P=CATALOG.filter(c=>c.principal), R=CATALOG.filter(c=>!c.principal);
+  $('#chips').innerHTML =
+    `<div class="covgroup"><div class="gl">${LANG==='zh'?'核心品種 · 8':'PRINCIPAL · 8'}</div><div class="chips" style="margin-top:0">${P.map(chip).join('')}</div></div>`+
+    `<div class="covgroup"><div class="gl">${LANG==='zh'?'地區品種 · 22':'REGIONAL · 22'}</div><div class="chips" style="margin-top:0">${R.map(chip).join('')}</div></div>`;
+  document.querySelectorAll('.chip').forEach(el=>el.onclick=()=>{
+    const g=el.dataset.g; GRAPE_FILTER = (GRAPE_FILTER===g)?'':g; renderFilters(); renderGrid();
+  });
+}
+
+function renderFilters(){
+  const list=realTastings();
+  const types=[...new Set(list.map(x=>x.type).filter(Boolean))];
+  const countries=[...new Set(list.map(x=>x.country).filter(Boolean))];
+  $('#tyfilters').innerHTML=`<button class="pill${TYPE_FILTER==='all'?' active':''}" data-ty="all">${t('all')}</button>`+
+    types.map(ty=>`<button class="pill${TYPE_FILTER===ty?' active':''}" data-ty="${esc(ty)}">${esc(typeOf(ty))}</button>`).join('');
+  document.querySelectorAll('#tyfilters .pill').forEach(b=>b.onclick=()=>{TYPE_FILTER=b.dataset.ty;renderFilters();renderGrid();});
+  $('#cfilters').innerHTML=`<span class="lab">${LANG==='zh'?'產地':'ORIGIN'}</span>`+
+    [`<button class="pill${COUNTRY_FILTER==='all'?' active':''}" data-c="all">${t('all')}</button>`]
+      .concat(countries.map(c=>`<button class="pill${COUNTRY_FILTER===c?' active':''}" data-c="${esc(c)}">${esc(c)}</button>`)).join('');
+  document.querySelectorAll('#cfilters .pill').forEach(b=>b.onclick=()=>{COUNTRY_FILTER=b.dataset.c;renderFilters();renderGrid();});
+  $('#sortbtn').textContent=BY_SCORE?t('sortScore'):t('sort');
+}
+
+function matches(x){
+  if(TYPE_FILTER!=='all'&&x.type!==TYPE_FILTER)return false;
+  if(COUNTRY_FILTER!=='all'&&x.country!==COUNTRY_FILTER)return false;
+  if(GRAPE_FILTER){const gs=(x.grapes||[]).map(g=>nameOf(g));if(!gs.includes(nameOf(GRAPE_FILTER)))return false;}
+  if(QUERY){const hay=[x.name,x.producer,x.region,x.appellation,x.note].concat(x.grapes||[]).join(' ').toLowerCase();
+    if(!hay.includes(QUERY.toLowerCase()))return false;}
+  return true;
+}
+
+function card(x){
+  const gs=(x.grapes||[]).map(g=>`<span>${esc(nameOf(g))}</span>`).join('');
+  const img=x.photo?`<img class="shot" src="${esc(x.photo)}" alt="${esc(x.name)}" loading="lazy">`
+    :`<div class="noimg">
+        <svg class="enso" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
+          <path d="M50 10a40 40 0 1 1-12 78" stroke-linecap="round"/></svg>
+        <svg class="btl" viewBox="0 0 40 120" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <path d="M16 8h8v26c0 5 9 9 9 17v55a6 6 0 0 1-6 6H13a6 6 0 0 1-6-6V51c0-8 9-12 9-17V8z"/>
+          <path d="M7 62h26" stroke-width="1"/>
+          <path d="M7 74h26" stroke-width=".8" opacity=".55"/>
+        </svg>
+      </div>`;
+  return `<article class="card" data-id="${esc(x.id)}">
+    ${x.sample?'<span class="tag">樣本</span>':''}
+    ${x.score?`<span class="seal">${x.score}</span>`:''}
+    ${img}
+    <div class="body">
+      <div class="nm">${esc(x.name)}</div>
+      ${(x.producer||x.vintage)?`<div class="pr">${esc([x.producer,x.vintage].filter(Boolean).join(' · '))}</div>`:''}
+      <div class="rg">${esc([x.country,x.region].filter(Boolean).join(' · '))}</div>
+      <div class="gr">${gs}</div>
+    </div>
+  </article>`;
+}
+
+function renderGrid(){
+  const list=realTastings().filter(matches);
+  const sorted=list.slice().sort((a,b)=>{
+    if(BY_SCORE)return (b.score||0)-(a.score||0);
+    return String(b.date||'').localeCompare(String(a.date||''));
+  });
+  $('#seck').textContent=t('sec');
+  $('#secn').textContent=t('count')(sorted.length);
+  if(!sorted.length){
+    $('#grid').innerHTML=`<div class="empty" style="grid-column:1/-1">${t('empty')}</div>`;
+  }else{
+    $('#grid').innerHTML=sorted.map(card).join('');
+    document.querySelectorAll('.card').forEach(el=>{
+      el.onclick=()=>openModal(el.dataset.id);
+      requestAnimationFrame(()=>el.classList.add('in'));
+    });
+  }
+  renderJournal();
+}
+
+function renderJournal(){
+  const list=realTastings().filter(x=>x.date).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  $('#jk').textContent=t('journal');
+  $('#jn').textContent=list.length?`${list.length}`:'';
+  $('#jlist').innerHTML = list.length? list.map(x=>`<div class="jrow" data-id="${esc(x.id)}">
+      <span class="jd">${esc(x.date)}</span>
+      <span class="jn">${esc(x.name)}</span>
+      <span class="jv">${esc(x.venue||'—')}</span>
+      <span class="js">${x.score||'—'}</span></div>`).join('')
+    : `<div class="jempty">${t('empty')}</div>`;
+  document.querySelectorAll('.jrow').forEach(el=>el.onclick=()=>openModal(el.dataset.id));
+}
+
+function kvBlock(title,obj){
+  if(!obj)return '';
+  const rows=Object.entries(obj).filter(([k,v])=>v&&(!Array.isArray(v)||v.length));
+  if(!rows.length)return '';
+  const label={clarity:'清晰度',intensity:'濃淡',colour:'顏色',condition:'狀態',aroma:'香氣',
+    development:'發展',sweetness:'甜度',acidity:'酸度',tannin:'單寧',alcohol:'酒精',body:'酒體',
+    flavour:'風味',finish:'餘韻',quality:'品質',price:'價位',ageing:'陳年'};
+  return `<div class="blk"><h3>${title}</h3><div class="kv">${rows.map(([k,v])=>
+    `<b>${LANG==='zh'?(label[k]||k):k}</b><span>${esc(Array.isArray(v)?v.join('、'):v)}</span>`).join('')}</div></div>`;
+}
+
+function openModal(id){
+  const x=TASTINGS.find(v=>v.id===id); if(!x)return;
+  const s=x.sat||{};
+  const sat=[kvBlock(LANG==='zh'?'外觀 APPEARANCE':'APPEARANCE',s.appearance),
+             kvBlock(LANG==='zh'?'香氣 NOSE':'NOSE',s.nose),
+             kvBlock(LANG==='zh'?'口感 PALATE':'PALATE',s.palate),
+             kvBlock(LANG==='zh'?'結論 CONCLUSIONS':'CONCLUSIONS',s.conclusion)].join('');
+  const rows=[['產區',[x.country,x.region].filter(Boolean).join(' · ')],
+              ['品種',(x.grapes||[]).map(nameOf).join('、')],
+              ['類型',typeOf(x.type)],
+              ['酒精',x.abv?x.abv+'%':''],
+              ['價錢',x.price?`${x.currency||'HK$'} ${x.price}`:''],
+              ['日期',x.date],['場合',x.venue],['分數',x.score]].filter(([k,v])=>v);
+  $('#mbox').innerHTML=`<button class="mclose" id="mclose">✕</button>
+    ${x.photo?`<img class="mimg" src="${esc(x.photo)}" alt="${esc(x.name)}">`:''}
+    <div class="mbody">
+      <h2>${esc(x.name)}</h2>
+      <div class="sub">${esc([x.producer,x.vintage].filter(Boolean).join(' · '))}</div>
+      <div class="rows">${rows.map(([k,v])=>`<div><b>${k}</b><span>${esc(v)}</span></div>`).join('')}</div>
+      ${sat?`<div class="sat">${sat}</div>`:''}
+      ${x.note?`<div class="note">${esc(x.note)}</div>`:''}
+    </div>`;
+  $('#modal').classList.add('open');
+  $('#mclose').onclick=closeModal;
+}
+function closeModal(){$('#modal').classList.remove('open');}
+$('#modal').onclick=(e)=>{if(e.target.id==='modal')closeModal();};
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeModal();});
+
+$('#q').oninput=(e)=>{QUERY=e.target.value.trim();renderGrid();};
+$('#sortbtn').onclick=()=>{BY_SCORE=!BY_SCORE;renderFilters();renderGrid();};
+document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{
+  LANG=b.dataset.l;
+  document.querySelectorAll('#lang button').forEach(x=>x.classList.toggle('on',x===b));
+  $('#ft2').textContent=LANG==='zh'?'飲過的，記下來':'what I drank, written down';
+  $('#q').placeholder=LANG==='zh'?'搜尋酒名、產區、品種…':'search wine, region, grape…';
+  renderStats();renderCoverage();renderFilters();renderGrid();
+});
+
+renderStats();renderCoverage();renderFilters();renderGrid();
+</script>
+</body>
+</html>
