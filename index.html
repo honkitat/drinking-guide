@@ -134,6 +134,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.88);backdro
 .body{padding:15px 17px 19px;border-top:1px solid rgba(70,52,30,.09)}
 .nm{font-family:var(--serif);font-size:1.24rem;font-weight:600;letter-spacing:.03em;line-height:1.35;
   transition:color .35s}
+.nmen{font-size:.73rem;color:#5a4c3c;font-style:italic;letter-spacing:.03em;margin-top:2px;line-height:1.5}
 .pr{font-size:.78rem;color:#3a2f26;letter-spacing:.04em;margin-top:5px;white-space:nowrap;overflow:hidden;
   text-overflow:ellipsis}
 .rg{font-size:.74rem;color:#4b4038;letter-spacing:.04em;margin-top:3px}
@@ -171,6 +172,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.88);backdro
 .mbody{padding:24px 28px 30px;position:relative}
 .mbody h2{font-family:var(--serif);font-size:1.9rem;font-weight:600;letter-spacing:.03em;line-height:1.25;padding-right:44px}
 .mbody .sub{font-size:.8rem;color:var(--ink-soft);letter-spacing:.08em;margin-top:6px}
+.mbody .mtr{font-family:var(--serif);font-size:1rem;font-style:italic;color:#5a4c3c;margin-top:2px;letter-spacing:.02em}
 .rows{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;margin:16px 0 6px;font-size:.78rem;color:var(--ink-soft)}
 .rows div{display:flex;gap:8px}
 .rows b{color:var(--muted);font-weight:400;letter-spacing:.12em;min-width:64px}
@@ -211,14 +213,14 @@ footer .dot{opacity:.4;margin:0 6px}
 <header>
   <div class="hbar">
     <div class="logo">j-<i>ink</i>ing</div>
-    <div class="search"><span class="mag">⌕</span><input id="q" type="search" placeholder="搜尋酒名、產區、品種…" autocomplete="off"></div>
-    <div class="langtoggle" id="lang"><button data-l="zh" class="on">中</button><button data-l="en">EN</button></div>
+    <div class="search"><span class="mag">⌕</span><input id="q" type="search" placeholder="Search wine, region, grape…" autocomplete="off"></div>
+    <div class="langtoggle" id="lang"><button data-l="en" class="on">EN</button><button data-l="zh">中</button></div>
   </div>
 </header>
 
 <div class="masthead">
   <div class="big">醇</div>
-  <div class="sub" id="tagline">酒類品飲檔案</div>
+  <div class="sub" id="tagline">a drinking archive</div>
   <div class="rule"></div>
 </div>
 
@@ -226,7 +228,7 @@ footer .dot{opacity:.4;margin:0 6px}
 
 <div class="cov">
   <div class="h">
-    <span class="k" id="covk">WSET L2 品種</span>
+    <span class="k" id="covk">WSET L2 VARIETIES</span>
     <span class="bar"><i></i></span>
     <span class="n" id="covn"></span>
   </div>
@@ -237,7 +239,7 @@ footer .dot{opacity:.4;margin:0 6px}
 <div class="fbar" id="cfilters"></div>
 
 <div class="sechead">
-  <span class="k" id="seck">酒藏</span>
+  <span class="k" id="seck">CELLAR</span>
   <span class="n" id="secn"></span>
   <button class="sort" id="sortbtn"></button>
 </div>
@@ -245,7 +247,7 @@ footer .dot{opacity:.4;margin:0 6px}
 <div class="grid" id="grid"></div>
 
 <div class="journal">
-  <div class="jhead"><span class="k" id="jk">日誌</span><span class="n" id="jn"></span></div>
+  <div class="jhead"><span class="k" id="jk">JOURNAL</span><span class="n" id="jn"></span></div>
   <div id="jlist"></div>
 </div>
 
@@ -254,12 +256,12 @@ footer .dot{opacity:.4;margin:0 6px}
 </div>
 
 <footer>
-  <span id="ft1">j-inking</span><span class="dot">·</span><span id="ft2">飲過的，記下來</span>
+  <span id="ft1">j-inking</span><span class="dot">·</span><span id="ft2">what I drank, written down</span>
 </footer>
 
 <script>
 const CATALOG = [{"key":"merlot","en":"Merlot","cn":"梅洛","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: Bordeaux, Saint-Émilion, PomeroI  USA: California, Napa Valley"],"gis_raw":"GIs within the EU PGI production • France: Pays d‘Oc PDOs • France: Bordeaux, Saint-Émilion, PomeroI GIs from other wine-producing countries: USA: California, Napa Valley, Sonoma Chile: Central Valley South Africa: Stell"},{"key":"cabernet-sauvignon","en":"Cabernet Sauvignon","cn":"卡本內蘇維濃","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: Bordeaux, Haut-Médoc, Pauillac, Margaux, Graves, Pessac-Léogna"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: Bordeaux, Haut-Médoc, Pauillac, Margaux, Graves, Pessac-Léognan GIs from other wine-producing countries: USA: California, Napa Valley (Oakville, Rutherf"},{"key":"syrah","en":"Syrah/Shiraz","cn":"希哈","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: - Northern Rhône: Crozes-Hermitage, Hermitage, Côte Rôtie - La"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: - Northern Rhône: Crozes-Hermitage, Hermitage, Côte Rôtie - Languedoc-Roussillon: Minervois GIs from other wine-producing countries: Australia: South Ea"},{"key":"pinot-noir","en":"Pinot Noir","cn":"黑皮諾","colour":"red","principal":true,"gis":["France: Bourgogne/Burgundy, Gevrey-Chambertin, Nuits-Saint-Georges, Be"],"gis_raw":"GIs within the EU PDOs • France: Bourgogne/Burgundy, Gevrey-Chambertin, Nuits-Saint-Georges, Beaune, Pommard GIs from other wine-producing countries: USA: Sonoma, Los Carneros, Santa Barbara County, Oregon Chile: Casabla"},{"key":"chardonnay","en":"Chardonnay","cn":"夏多內","colour":"white","principal":true,"gis":["France: Pays d'Oc","France: Bourgogne/Burgundy, Chablis, Puligny-Montrachet, Meursault, Mâ"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: Bourgogne/Burgundy, Chablis, Puligny-Montrachet, Meursault, Mâcon, Pouilly-Fuissé GIs from other wine-producing countries: USA: California, Sonoma, Los "},{"key":"riesling","en":"Riesling","cn":"麗絲玲","colour":"white","principal":true,"gis":["France: Alsace","Germany: Mosel, Rheingau, Pfalz  Australia: Clare Valley, Eden Valley"],"gis_raw":"GIs within the EU PDOs • France: Alsace • Germany: Mosel, Rheingau, Pfalz GIs from other wine-producing countries: Australia: Clare Valley, Eden Valley"},{"key":"sauvignon-blanc","en":"Sauvignon Blanc","cn":"白蘇維濃","colour":"white","principal":true,"gis":["France: Pays d'Oc","France: - Loire: Sancerre, Pouilly-Fumé, Touraine - Bordeaux: Bordeaux"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: - Loire: Sancerre, Pouilly-Fumé, Touraine - Bordeaux: Bordeaux, Graves, Pessac-Léognan GIs from other wine-producing countries: USA: Napa Valley Chile: "},{"key":"pinot-gris","en":"Pinot Gris / Pinot Grigio","cn":"灰皮諾","colour":"white","principal":false,"gis":["Italy: Veneto","France: Alsace","Italy: Delle Venezie, Friuli-Venezia Giulia Regionally important label"],"gis_raw":"GIs within the EU PGI production • Italy: Veneto PDOs • France: Alsace • Italy: Delle Venezie, Friuli-Venezia Giulia Regionally important labelling terms indicating style and quality of wines made from the principal grap"},{"key":"gamay","en":"Gamay","cn":"加美","colour":"red","principal":false,"gis":["GIs France: Beaujolais, Beaujolais Villages, Beaujolais Cru (Fleurie)"],"gis_raw":"GIs France: Beaujolais, Beaujolais Villages, Beaujolais Cru (Fleurie)"},{"key":"grenache","en":"Grenache/Garnacha","cn":"格那希","colour":"red","principal":true,"gis":["GIs France:","Southern Rhône: Côtes du Rhône, Côtes du Rhône Villages, Châteauneuf-d","Languedoc-Roussillon and Provence: Minervois, Côtes de Provence Spain:"],"gis_raw":"GIs France: • Southern Rhône: Côtes du Rhône, Côtes du Rhône Villages, Châteauneuf-du-Pape • Languedoc-Roussillon and Provence: Minervois, Côtes de Provence Spain: Rioja, Navarra, Priorat Australia: Barossa Valley, McLar"},{"key":"tempranillo","en":"Tempranillo","cn":"田帕尼優","colour":"red","principal":false,"gis":["GIs Spain: Rioja, Ribera del Duero, Catalunya"],"gis_raw":"GIs Spain: Rioja, Ribera del Duero, Catalunya"},{"key":"nebbiolo","en":"Nebbiolo","cn":"內比歐露","colour":"red","principal":false,"gis":["GIs Italy: Barolo, Barbaresco"],"gis_raw":"GIs Italy: Barolo, Barbaresco"},{"key":"barbera","en":"Barbera","cn":"巴貝拉","colour":"red","principal":false,"gis":["GIs Italy: Barbera d'Asti"],"gis_raw":"GIs Italy: Barbera d’Asti"},{"key":"sangiovese","en":"Sangiovese","cn":"山吉歐維榭","colour":"red","principal":false,"gis":["GIs Italy: Chianti, Chianti Classico, Brunello di Montalcino"],"gis_raw":"GIs Italy: Chianti, Chianti Classico, Brunello di Montalcino"},{"key":"corvina","en":"Corvina","cn":"科維納","colour":"red","principal":false,"gis":["GIs Italy: Valpolicella, Amarone della Valpolicella, Recioto della Val"],"gis_raw":"GIs Italy: Valpolicella, Amarone della Valpolicella, Recioto della Valpolicella"},{"key":"montepulciano","en":"Montepulciano","cn":"蒙提布希亞諾","colour":"red","principal":false,"gis":["GIs Italy: Montepulciano d'Abruzzo 13 2 Learning Outcomes"],"gis_raw":"GIs Italy: Montepulciano d’Abruzzo 13 2 Learning Outcomes"},{"key":"zinfandel","en":"Zinfandel/Primitivo","cn":"金芬黛","colour":"red","principal":false,"gis":["GIs USA: California Italy: Puglia"],"gis_raw":"GIs USA: California Italy: Puglia"},{"key":"pinotage","en":"Pinotage","cn":"皮諾塔吉","colour":"red","principal":false,"gis":["GIs South Africa: Western Cape"],"gis_raw":"GIs South Africa: Western Cape"},{"key":"carmenere","en":"Carmenère","cn":"卡門內爾","colour":"red","principal":false,"gis":["GIs Chile: Central Valley"],"gis_raw":"GIs Chile: Central Valley"},{"key":"malbec","en":"Malbec","cn":"馬爾貝克","colour":"red","principal":false,"gis":["GIs Argentina: Mendoza White grape varieties Characteristics Colour, s"],"gis_raw":"GIs Argentina: Mendoza White grape varieties Characteristics Colour, sugar (potential alcohol), acidity, aromas and flavours"},{"key":"chenin-blanc","en":"Chenin Blanc","cn":"白詩南","colour":"white","principal":false,"gis":["GIs France: Vouvray South Africa: Western Cape"],"gis_raw":"GIs France: Vouvray South Africa: Western Cape"},{"key":"semillon","en":"Sémillon","cn":"塞美蓉","colour":"white","principal":false,"gis":["GIs France: Sauternes Australia: Hunter Valley, Barossa Valley"],"gis_raw":"GIs France: Sauternes Australia: Hunter Valley, Barossa Valley"},{"key":"viognier","en":"Viognier","cn":"維歐尼耶","colour":"white","principal":false,"gis":["GIs France:","Northern Rhône: Condrieu"],"gis_raw":"GIs France: • Northern Rhône: Condrieu"},{"key":"gewurztraminer","en":"Gewurztraminer","cn":"格烏茲塔明那","colour":"white","principal":false,"gis":["GIs France: Alsace, Alsace Grand Cru"],"gis_raw":"GIs France: Alsace, Alsace Grand Cru"},{"key":"verdicchio","en":"Verdicchio","cn":"維蒂奇諾","colour":"white","principal":false,"gis":["GIs Italy: Verdicchio dei Castelli di Jesi"],"gis_raw":"GIs Italy: Verdicchio dei Castelli di Jesi"},{"key":"cortese","en":"Cortese","cn":"柯帝士","colour":"white","principal":false,"gis":["GIs Italy: Gavi"],"gis_raw":"GIs Italy: Gavi"},{"key":"garganega","en":"Garganega","cn":"卡爾卡內加","colour":"white","principal":false,"gis":["GIs Italy: Soave, Recioto di Soave"],"gis_raw":"GIs Italy: Soave, Recioto di Soave"},{"key":"fiano","en":"Fiano","cn":"菲亞諾","colour":"white","principal":false,"gis":["GIs Italy: Fiano di Avellino"],"gis_raw":"GIs Italy: Fiano di Avellino"},{"key":"albarino","en":"Albariño","cn":"阿爾巴利諾","colour":"white","principal":false,"gis":["GIs Spain: Rías Baixas"],"gis_raw":"GIs Spain: Rías Baixas"},{"key":"furmint","en":"Furmint","cn":"富爾民特","colour":"white","principal":false,"gis":["GIs Hungary: Tokaj"],"gis_raw":"GIs Hungary: Tokaj"}];
-const TASTINGS = [{"id":"sample-03","sample":true,"date":"","name":"Sauternes","producer":"","vintage":null,"type":"white","country":"France","region":"Bordeaux · Sauternes","appellation":"Sauternes","grapes":["Sémillon","Sauvignon Blanc"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium","colour":"deep gold"},"nose":{"condition":"clean","intensity":"pronounced","aroma":["dried apricot","honey","orange marmalade","saffron"],"development":"developing"},"palate":{"sweetness":"sweet","acidity":"medium","tannin":null,"alcohol":"medium","body":"full","flavour":["honey","apricot","ginger"],"finish":"long"},"conclusion":{"quality":"very good","price":"","ageing":"can age"}},"score":null,"note":"樣本卡：甜酒如何用高酸平衡糖分 — 這是你考 L2 最容易寫漏的一句。"},{"id":"sample-01","sample":true,"date":"","name":"Chablis","producer":"","vintage":null,"type":"white","country":"France","region":"Burgundy · Chablis","appellation":"Chablis","grapes":["Chardonnay"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium","colour":"medium lemon"},"nose":{"condition":"clean","intensity":"medium","aroma":["green apple","lemon","wet stone"],"development":"developing"},"palate":{"sweetness":"dry","acidity":"high","tannin":null,"alcohol":"medium","body":"medium","flavour":["green apple","citrus","chalk"],"finish":"medium"},"conclusion":{"quality":"good","price":"","ageing":"drink now"}},"score":null,"note":"樣本卡：示範一條記錄長甚麼樣。正式記錄會由你每次飲完之後填。"},{"id":"sample-02","sample":true,"date":"","name":"Beaujolais Villages","producer":"","vintage":null,"type":"red","country":"France","region":"Beaujolais","appellation":"Beaujolais Villages","grapes":["Gamay"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium(-)","colour":"medium purple"},"nose":{"condition":"clean","intensity":"medium(+)","aroma":["raspberry","cherry","violet"],"development":"developing"},"palate":{"sweetness":"dry","acidity":"high","tannin":"low","alcohol":"medium","body":"light","flavour":["red cherry","cranberry"],"finish":"medium(-)"},"conclusion":{"quality":"good","price":"","ageing":"drink now, not suitable for ageing"}},"score":null,"note":"樣本卡：Gamay 低單寧、高酸、輕酒體 — 用來校正你對『輕』和『高酸』的刻度。"}];
+const TASTINGS = [{"id":"sample-jp","sample":true,"date":"","name":"純米大吟醸","name_en":"Junmai Daiginjo — polished-rice sake, no added alcohol","lang":"ja","producer":"","vintage":null,"type":"sake","country":"Japan","region":"Hyōgo · Nada","appellation":"","grapes":[],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"pale","colour":"colourless to pale straw"},"nose":{"condition":"clean","intensity":"medium(+)","aroma":["melon","pear","steamed rice","faint banana"],"development":"developing"},"palate":{"sweetness":"off-dry","acidity":"medium","tannin":null,"alcohol":"medium","body":"medium","flavour":["melon","rice sweetness","clean finish"],"finish":"medium"},"conclusion":{"quality":"very good","price":"","ageing":"drink now"}},"score":null,"note":"Sample card — non-wine entries are kept too; the Japanese name stays as written."},{"id":"sample-es","sample":true,"date":"","name":"Rioja Reserva","name_en":"Rioja Reserva — Tempranillo aged before release","lang":"es","producer":"","vintage":null,"type":"red","country":"Spain","region":"Rioja","appellation":"Rioja DOCa","grapes":["Tempranillo"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium","colour":"medium ruby"},"nose":{"condition":"clean","intensity":"medium(+)","aroma":["red cherry","vanilla","coconut","dill"],"development":"developing"},"palate":{"sweetness":"dry","acidity":"medium(+)","tannin":"medium","alcohol":"medium","body":"medium","flavour":["strawberry","vanilla","sweet spice"],"finish":"medium(+)"},"conclusion":{"quality":"good","price":"","ageing":"drink now, can age"}},"score":null,"note":"Sample card — the Spanish label term Reserva is the examinable part."},{"id":"sample-fr","sample":true,"date":"","name":"Chablis","name_en":"Chablis — unoaked Chardonnay, northern Burgundy","lang":"fr","producer":"","vintage":null,"type":"white","country":"France","region":"Burgundy · Chablis","appellation":"Chablis","grapes":["Chardonnay"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium","colour":"medium lemon"},"nose":{"condition":"clean","intensity":"medium","aroma":["green apple","lemon","wet stone"],"development":"developing"},"palate":{"sweetness":"dry","acidity":"high","tannin":null,"alcohol":"medium","body":"medium","flavour":["green apple","citrus","chalk"],"finish":"medium"},"conclusion":{"quality":"good","price":"","ageing":"drink now"}},"score":null,"note":"Sample card — shows the shape of one record. French name kept, English underneath."},{"id":"sample-it","sample":true,"date":"","name":"Barolo","name_en":"Barolo — Nebbiolo, Piedmont","lang":"it","producer":"","vintage":null,"type":"red","country":"Italy","region":"Piedmont · Barolo","appellation":"Barolo DOCG","grapes":["Nebbiolo"],"abv":null,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"","sat":{"appearance":{"clarity":"clear","intensity":"medium","colour":"pale garnet"},"nose":{"condition":"clean","intensity":"pronounced","aroma":["tar","rose","dried cherry","liquorice"],"development":"developing"},"palate":{"sweetness":"dry","acidity":"high","tannin":"high","alcohol":"medium(+)","body":"full","flavour":["red cherry","tar","savoury herbs"],"finish":"long"},"conclusion":{"quality":"very good","price":"","ageing":"can age"}},"score":null,"note":"Sample card — Italian name first, English explanation underneath."}];
 
 const T = {
   zh:{tagline:'酒類品飲檔案', covk:'WSET L2 品種', sec:'酒藏', journal:'日誌', sort:'最新優先', sortScore:'按分數',
@@ -275,7 +277,7 @@ const TYPE = {
   red:['紅酒','Red'], white:['白酒','White'], rose:['粉紅','Rosé'], sparkling:['氣泡','Sparkling'],
   fortified:['加烈','Fortified'], spirit:['烈酒','Spirit'], sake:['清酒','Sake'], beer:['啤酒','Beer']
 };
-let LANG='zh', TYPE_FILTER='all', COUNTRY_FILTER='all', GRAPE_FILTER='', QUERY='', BY_SCORE=false;
+let LANG='en', TYPE_FILTER='all', COUNTRY_FILTER='all', GRAPE_FILTER='', QUERY='', BY_SCORE=false;
 
 const $=(s)=>document.querySelector(s);
 const esc=(s)=>String(s==null?'':s).replace(/[&<>"]/g,(c)=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -319,7 +321,8 @@ function renderCoverage(){
 
 function renderFilters(){
   const list=realTastings();
-  const types=[...new Set(list.map(x=>x.type).filter(Boolean))];
+  const ORDER=['red','white','rose','sparkling','fortified','spirit','sake','beer'];
+  const types=[...new Set(list.map(x=>x.type).filter(Boolean))].sort((a,b)=>ORDER.indexOf(a)-ORDER.indexOf(b));
   const countries=[...new Set(list.map(x=>x.country).filter(Boolean))];
   $('#tyfilters').innerHTML=`<button class="pill${TYPE_FILTER==='all'?' active':''}" data-ty="all">${t('all')}</button>`+
     types.map(ty=>`<button class="pill${TYPE_FILTER===ty?' active':''}" data-ty="${esc(ty)}">${esc(typeOf(ty))}</button>`).join('');
@@ -353,11 +356,12 @@ function card(x){
         </svg>
       </div>`;
   return `<article class="card" data-id="${esc(x.id)}">
-    ${x.sample?'<span class="tag">樣本</span>':''}
+    ${x.sample?`<span class="tag">${LANG==='zh'?'樣本':'SAMPLE'}</span>`:''}
     ${x.score?`<span class="seal">${x.score}</span>`:''}
     ${img}
     <div class="body">
       <div class="nm">${esc(x.name)}</div>
+      ${x.name_en?`<div class="nmen">${esc(x.name_en)}</div>`:''}
       ${(x.producer||x.vintage)?`<div class="pr">${esc([x.producer,x.vintage].filter(Boolean).join(' · '))}</div>`:''}
       <div class="rg">${esc([x.country,x.region].filter(Boolean).join(' · '))}</div>
       <div class="gr">${gs}</div>
@@ -426,6 +430,7 @@ function openModal(id){
     ${x.photo?`<img class="mimg" src="${esc(x.photo)}" alt="${esc(x.name)}">`:''}
     <div class="mbody">
       <h2>${esc(x.name)}</h2>
+      ${x.name_en?`<div class="mtr">${esc(x.name_en)}</div>`:''}
       <div class="sub">${esc([x.producer,x.vintage].filter(Boolean).join(' · '))}</div>
       <div class="rows">${rows.map(([k,v])=>`<div><b>${k}</b><span>${esc(v)}</span></div>`).join('')}</div>
       ${sat?`<div class="sat">${sat}</div>`:''}
