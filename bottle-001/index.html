@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clase Azul Reposado｜just drink</title>
+<title>Clase Azul Reposado｜j-drinking</title>
 <meta name="description" content="Clase Azul Reposado — 100% blue Weber agave tequila, 8 months in American whiskey casks">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,11 +30,12 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.9);backdrop
 .hbar{max-width:820px;margin:0 auto;padding:11px 24px;display:flex;align-items:center;gap:16px}
 .logo{font-family:'Italiana',serif;font-size:1.06rem;letter-spacing:.02em;color:var(--ink);opacity:.93}
 .logo i{font-style:normal;color:var(--wine)}
+.logo .hy{font-family:Georgia,'Times New Roman',serif;font-size:1.12em;letter-spacing:.04em;vertical-align:-.04em}
 .back{margin-left:auto;font-size:.72rem;letter-spacing:.16em;color:var(--muted);border-bottom:1px solid transparent}
 .back:hover{color:var(--wine);border-bottom-color:var(--wine);text-decoration:none}
 
 main{max-width:820px;margin:0 auto;padding:34px 24px 60px}
-.top{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.top{display:flex;align-items:baseline;gap:14px;margin:0 0 10px}
 .no{font-family:var(--serif);font-size:.86rem;letter-spacing:.28em;color:var(--wine)}
 .crumb{font-size:.7rem;letter-spacing:.14em;color:var(--muted)}
 figure{margin:0 0 26px}
@@ -46,12 +47,22 @@ h1{font-family:var(--serif);font-size:clamp(1.7rem,4.4vw,2.5rem);font-weight:600
 .rows{display:grid;grid-template-columns:1fr 1fr;gap:8px 22px;margin:22px 0 6px;font-size:.82rem;color:var(--ink-soft)}
 .rows div{display:flex;gap:10px;border-bottom:1px solid rgba(120,95,58,.14);padding-bottom:6px}
 .rows b{color:var(--muted);font-weight:400;letter-spacing:.12em;min-width:78px}
+.bg{margin-top:30px;padding-left:20px;border-left:2px solid rgba(156,123,46,.55)}
+.bg h2{font-family:var(--serif);font-size:.78rem;letter-spacing:.34em;color:var(--gold);font-weight:500;margin-bottom:10px}
+.bg p{font-size:.93rem;line-height:2.05;color:var(--ink-soft)}
+.bg p+p{margin-top:15px}
+.bg .src{margin-top:12px;font-size:.63rem;letter-spacing:.03em;color:#6f6250;line-height:1.75}
 .sat{margin-top:26px;border-top:1px solid rgba(120,95,58,.26);padding-top:18px}
 .blk{margin-bottom:16px}
 .blk h2{font-family:var(--serif);font-size:.84rem;letter-spacing:.3em;color:var(--wine);font-weight:500;margin-bottom:7px}
 .kv{display:grid;grid-template-columns:96px 1fr;gap:4px 12px;font-size:.8rem;color:var(--ink-soft)}
 .kv b{color:var(--muted);font-weight:400;letter-spacing:.1em}
-.note{font-size:.9rem;color:var(--ink-soft);line-height:2;margin-top:22px;padding-top:18px;
+.tn{margin-top:30px}
+.tn h2{font-family:var(--serif);font-size:.78rem;letter-spacing:.34em;color:var(--wine);
+  font-weight:500;margin-bottom:10px}
+.tn p{font-size:.92rem;line-height:2.05;color:var(--ink-soft)}
+.tn .src{margin-top:10px;font-size:.63rem;letter-spacing:.03em;color:#6f6250}
+.note{font-size:.92rem;color:var(--ink-soft);line-height:2.05;margin-top:26px;padding-top:16px;
   border-top:1px solid rgba(120,95,58,.2);font-style:italic}
 nav.pager{display:flex;justify-content:space-between;gap:16px;margin-top:34px;padding-top:18px;
   border-top:1px solid rgba(120,95,58,.26);font-size:.76rem;letter-spacing:.12em;color:var(--muted)}
@@ -70,27 +81,29 @@ footer .dot{opacity:.4}
 <body>
 <header>
   <div class="hbar">
-    <div class="logo">just <i>drink</i></div>
+    <div class="logo">j<span class="hy">-</span><i>drinking</i></div>
     <a class="back" href="../">← ALL</a>
   </div>
 </header>
 
 <main>
+  <figure><img src='../images/tastings/undated-01.jpg' alt='Clase Azul Reposado'></figure>
+
   <div class="top">
     <span class="no">No. 001</span>
     <span class="crumb">Spirit</span>
   </div>
-
-  <figure><img src='../images/tastings/undated-01.jpg' alt='Clase Azul Reposado'></figure>
 
   <h1>Clase Azul Reposado</h1>
   <div class='tr'>Clase Azul Reposado — 100% blue Weber agave tequila, 8 months in American whiskey casks</div>
 
   <div class="rows"><div><b>origin</b><span>Mexico · Jalisco</span></div><div><b>appellation</b><span>Tequila</span></div><div><b>type</b><span>Spirit</span></div><div><b>ABV</b><span>40%</span></div></div>
 
+  <section class='bg'><h2>BACKGROUND</h2><p>Clase Azul began in 1997 in Guadalajara, when Arturo Lomelí started bottling tequila in hand-made ceramic decanters instead of glass. The bottle is the point: each one is shaped and painted by Mazahua artisans in Santa María Canchesdá, in the State of Mexico, and a single decanter takes about two weeks to finish — which is why the empty bottle usually ends up on a shelf rather than in the recycling.</p><p>The agave is 100% blue Weber grown in Los Altos de Jalisco, slow-cooked before fermentation, and this reposado rests eight months in American whiskey casks — long enough for vanilla and hazelnut, short enough that the cooked agave still leads.</p><div class='src'>claseazul.com (production, tasting notes) · Barron&#x27;s &amp; Forbes (founding, 1997) · Vinfolio / Tasting Table / The Times (Santa María Canchesdá decanters, ~2 weeks each)</div></section>
+
   
 
-  <div class='note'>Producer&#x27;s notes (claseazul.com): pale gold; medium to full body; cooked agave, agave nectar, candied orange peel, toasted wood, subtle hazelnut. Slow-cooked 100% blue Weber agave, rested 8 months in American whiskey casks, 40% ABV, ceramic decanter. — JOJO&#x27;s own tasting note still to come.</div>
+  <section class='tn'><h2>TASTING NOTES</h2><p>Pale gold; medium to full body. Cooked agave and agave nectar lead, with candied orange peel, toasted wood and a subtle hazelnut note from the American whiskey casks.</p><div class='src'>Producer&#x27;s tasting notes — claseazul.com</div></section>
 
   <nav class="pager">
     <span><span></span></span>
@@ -101,7 +114,7 @@ footer .dot{opacity:.4}
 <footer>
   <span><span id='views' hidden>views</span></span>
   <span class="dot">·</span>
-  <a href="../">just drink</a>
+  <a href="../">j-drinking</a>
   <span class="dot">·</span>
   <span>bottle 1 of 1</span>
 </footer>
