@@ -108,6 +108,7 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.88);backdro
 .grid{max-width:1120px;margin:0 auto;padding:22px 24px 46px;display:grid;
   grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(22px,3.2vw,42px)}
 .card{background:var(--washi);border:1px solid rgba(70,52,30,.13);border-radius:1px;overflow:hidden;cursor:pointer;
+  display:block;color:inherit;text-decoration:none}
   position:relative;opacity:1;transform:none;transition:transform .5s cubic-bezier(.22,.61,.36,1),
   border-color .3s,box-shadow .4s}
 .card:hover{transform:translateY(-3px);border-color:rgba(70,52,30,.3);
@@ -131,6 +132,12 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.88);backdro
 .tag{position:absolute;top:11px;left:11px;z-index:2;background:rgba(252,249,242,.9);color:var(--wine);
   border:1px solid rgba(109,31,44,.45);font-size:.58rem;letter-spacing:.18em;padding:2px 6px;border-radius:1px}
 .body{padding:15px 17px 19px;border-top:1px solid rgba(70,52,30,.09)}
+.no{font-family:var(--serif);font-size:.66rem;letter-spacing:.26em;color:var(--wine);margin-bottom:3px}
+a.card:hover{text-decoration:none}
+.card .go{display:block;text-align:right;font-size:.64rem;letter-spacing:.14em;color:var(--wine);
+  opacity:0;transform:translateX(-4px);transition:opacity .35s,transform .35s;margin-top:8px}
+.card:hover .go{opacity:.85;transform:none}
+a.jrow:hover{text-decoration:none}
 .nm{font-family:var(--serif);font-size:1.24rem;font-weight:600;letter-spacing:.03em;line-height:1.35;
   transition:color .35s}
 .nmen{font-size:.73rem;color:#5a4c3c;font-style:italic;letter-spacing:.03em;margin-top:2px;line-height:1.5}
@@ -149,7 +156,8 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.88);backdro
 .jhead .k{font-family:var(--serif);font-size:.82rem;letter-spacing:.36em;color:var(--ink-soft)}
 .jhead .n{font-size:.7rem;color:var(--muted);letter-spacing:.1em}
 .jrow{display:grid;grid-template-columns:96px 1fr 1fr 56px;gap:12px;padding:10px 6px;margin:0 -6px;
-  border-bottom:1px dashed rgba(70,52,30,.13);font-size:.79rem;color:var(--ink-soft);cursor:pointer;transition:.25s}
+  border-bottom:1px dashed rgba(70,52,30,.13);font-size:.79rem;color:var(--ink-soft);cursor:pointer;
+  transition:.25s;text-decoration:none}
 .jrow:hover{background:rgba(255,252,246,.7);padding-left:12px}
 .jrow:hover .jn{color:var(--wine)}
 .jrow .jd{color:var(--muted);letter-spacing:.04em;font-variant-numeric:tabular-nums}
@@ -157,36 +165,6 @@ header{position:sticky;top:0;z-index:40;background:rgba(245,239,227,.88);backdro
 .jrow .jv{color:var(--muted);font-size:.73rem}
 .jrow .js{text-align:right;font-family:var(--serif);color:var(--wine);font-size:.86rem}
 .jempty{font-size:.75rem;color:var(--muted);letter-spacing:.12em;padding:14px 0}
-
-/* ── modal ── */
-.modal{position:fixed;inset:0;background:rgba(30,22,14,.6);backdrop-filter:blur(6px);display:none;
-  align-items:center;justify-content:center;padding:18px;z-index:80}
-.modal.open{display:flex}
-.mbox{background:var(--washi);max-width:640px;width:100%;max-height:90vh;overflow:auto;border-radius:2px;
-  box-shadow:0 34px 90px -24px rgba(15,9,2,.6);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
-.mbox::-webkit-scrollbar{width:8px}
-.mbox::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px;border:2px solid var(--washi)}
-.mbox .mimg{width:100%;max-height:58vh;object-fit:contain;display:block;background:var(--paper-2);
-  border-bottom:1px solid rgba(70,52,30,.1)}
-.mbody{padding:24px 28px 30px;position:relative}
-.mbody h2{font-family:var(--serif);font-size:1.9rem;font-weight:600;letter-spacing:.03em;line-height:1.25;padding-right:44px}
-.mbody .sub{font-size:.8rem;color:var(--ink-soft);letter-spacing:.08em;margin-top:6px}
-.mbody .mtr{font-family:var(--serif);font-size:1rem;font-style:italic;color:#5a4c3c;margin-top:2px;letter-spacing:.02em}
-.rows{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px;margin:16px 0 6px;font-size:.78rem;color:var(--ink-soft)}
-.rows div{display:flex;gap:8px}
-.rows b{color:var(--muted);font-weight:400;letter-spacing:.12em;min-width:64px}
-.sat{margin-top:16px;border-top:1px solid rgba(120,95,58,.26);padding-top:14px}
-.sat .blk{margin-bottom:12px}
-.sat .blk h3{font-family:var(--serif);font-size:.82rem;letter-spacing:.3em;color:var(--wine);font-weight:500;
-  margin-bottom:6px}
-.sat .kv{display:grid;grid-template-columns:74px 1fr;gap:3px 10px;font-size:.77rem;color:var(--ink-soft)}
-.sat .kv b{color:var(--muted);font-weight:400;letter-spacing:.1em}
-.note{font-size:.88rem;color:var(--ink-soft);line-height:2;margin-top:14px;padding-top:14px;
-  border-top:1px solid rgba(120,95,58,.2);font-style:italic}
-.mclose{position:absolute;top:12px;right:14px;background:rgba(252,249,242,.94);border:1px solid var(--line);
-  border-radius:999px;width:30px;height:30px;font-size:.95rem;color:var(--ink-soft);cursor:pointer;line-height:28px;
-  text-align:center;z-index:2}
-.mclose:hover{border-color:var(--wine);color:var(--wine)}
 
 footer{text-align:center;padding:34px 24px 56px;color:var(--muted);font-size:.67rem;letter-spacing:.14em;line-height:2.2}
 footer .dot{opacity:.4;margin:0 6px}
@@ -250,17 +228,14 @@ footer .dot{opacity:.4;margin:0 6px}
   <div id="jlist"></div>
 </div>
 
-<div class="modal" id="modal">
-  <div class="mbox" id="mbox"></div>
-</div>
-
 <footer>
   <span id="ft1">just drink</span><span class="dot">·</span><span id="ft2">what I drank, written down</span>
+  <span class="dot">·</span><span id="siteviews" hidden></span>
 </footer>
 
 <script>
 const CATALOG = [{"key":"merlot","en":"Merlot","cn":"梅洛","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: Bordeaux, Saint-Émilion, PomeroI  USA: California, Napa Valley"],"gis_raw":"GIs within the EU PGI production • France: Pays d‘Oc PDOs • France: Bordeaux, Saint-Émilion, PomeroI GIs from other wine-producing countries: USA: California, Napa Valley, Sonoma Chile: Central Valley South Africa: Stell"},{"key":"cabernet-sauvignon","en":"Cabernet Sauvignon","cn":"卡本內蘇維濃","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: Bordeaux, Haut-Médoc, Pauillac, Margaux, Graves, Pessac-Léogna"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: Bordeaux, Haut-Médoc, Pauillac, Margaux, Graves, Pessac-Léognan GIs from other wine-producing countries: USA: California, Napa Valley (Oakville, Rutherf"},{"key":"syrah","en":"Syrah/Shiraz","cn":"希哈","colour":"red","principal":true,"gis":["France: Pays d'Oc","France: - Northern Rhône: Crozes-Hermitage, Hermitage, Côte Rôtie - La"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: - Northern Rhône: Crozes-Hermitage, Hermitage, Côte Rôtie - Languedoc-Roussillon: Minervois GIs from other wine-producing countries: Australia: South Ea"},{"key":"pinot-noir","en":"Pinot Noir","cn":"黑皮諾","colour":"red","principal":true,"gis":["France: Bourgogne/Burgundy, Gevrey-Chambertin, Nuits-Saint-Georges, Be"],"gis_raw":"GIs within the EU PDOs • France: Bourgogne/Burgundy, Gevrey-Chambertin, Nuits-Saint-Georges, Beaune, Pommard GIs from other wine-producing countries: USA: Sonoma, Los Carneros, Santa Barbara County, Oregon Chile: Casabla"},{"key":"chardonnay","en":"Chardonnay","cn":"夏多內","colour":"white","principal":true,"gis":["France: Pays d'Oc","France: Bourgogne/Burgundy, Chablis, Puligny-Montrachet, Meursault, Mâ"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: Bourgogne/Burgundy, Chablis, Puligny-Montrachet, Meursault, Mâcon, Pouilly-Fuissé GIs from other wine-producing countries: USA: California, Sonoma, Los "},{"key":"riesling","en":"Riesling","cn":"麗絲玲","colour":"white","principal":true,"gis":["France: Alsace","Germany: Mosel, Rheingau, Pfalz  Australia: Clare Valley, Eden Valley"],"gis_raw":"GIs within the EU PDOs • France: Alsace • Germany: Mosel, Rheingau, Pfalz GIs from other wine-producing countries: Australia: Clare Valley, Eden Valley"},{"key":"sauvignon-blanc","en":"Sauvignon Blanc","cn":"白蘇維濃","colour":"white","principal":true,"gis":["France: Pays d'Oc","France: - Loire: Sancerre, Pouilly-Fumé, Touraine - Bordeaux: Bordeaux"],"gis_raw":"GIs within the EU PGI production • France: Pays d’Oc PDOs • France: - Loire: Sancerre, Pouilly-Fumé, Touraine - Bordeaux: Bordeaux, Graves, Pessac-Léognan GIs from other wine-producing countries: USA: Napa Valley Chile: "},{"key":"pinot-gris","en":"Pinot Gris / Pinot Grigio","cn":"灰皮諾","colour":"white","principal":false,"gis":["Italy: Veneto","France: Alsace","Italy: Delle Venezie, Friuli-Venezia Giulia Regionally important label"],"gis_raw":"GIs within the EU PGI production • Italy: Veneto PDOs • France: Alsace • Italy: Delle Venezie, Friuli-Venezia Giulia Regionally important labelling terms indicating style and quality of wines made from the principal grap"},{"key":"gamay","en":"Gamay","cn":"加美","colour":"red","principal":false,"gis":["GIs France: Beaujolais, Beaujolais Villages, Beaujolais Cru (Fleurie)"],"gis_raw":"GIs France: Beaujolais, Beaujolais Villages, Beaujolais Cru (Fleurie)"},{"key":"grenache","en":"Grenache/Garnacha","cn":"格那希","colour":"red","principal":true,"gis":["GIs France:","Southern Rhône: Côtes du Rhône, Côtes du Rhône Villages, Châteauneuf-d","Languedoc-Roussillon and Provence: Minervois, Côtes de Provence Spain:"],"gis_raw":"GIs France: • Southern Rhône: Côtes du Rhône, Côtes du Rhône Villages, Châteauneuf-du-Pape • Languedoc-Roussillon and Provence: Minervois, Côtes de Provence Spain: Rioja, Navarra, Priorat Australia: Barossa Valley, McLar"},{"key":"tempranillo","en":"Tempranillo","cn":"田帕尼優","colour":"red","principal":false,"gis":["GIs Spain: Rioja, Ribera del Duero, Catalunya"],"gis_raw":"GIs Spain: Rioja, Ribera del Duero, Catalunya"},{"key":"nebbiolo","en":"Nebbiolo","cn":"內比歐露","colour":"red","principal":false,"gis":["GIs Italy: Barolo, Barbaresco"],"gis_raw":"GIs Italy: Barolo, Barbaresco"},{"key":"barbera","en":"Barbera","cn":"巴貝拉","colour":"red","principal":false,"gis":["GIs Italy: Barbera d'Asti"],"gis_raw":"GIs Italy: Barbera d’Asti"},{"key":"sangiovese","en":"Sangiovese","cn":"山吉歐維榭","colour":"red","principal":false,"gis":["GIs Italy: Chianti, Chianti Classico, Brunello di Montalcino"],"gis_raw":"GIs Italy: Chianti, Chianti Classico, Brunello di Montalcino"},{"key":"corvina","en":"Corvina","cn":"科維納","colour":"red","principal":false,"gis":["GIs Italy: Valpolicella, Amarone della Valpolicella, Recioto della Val"],"gis_raw":"GIs Italy: Valpolicella, Amarone della Valpolicella, Recioto della Valpolicella"},{"key":"montepulciano","en":"Montepulciano","cn":"蒙提布希亞諾","colour":"red","principal":false,"gis":["GIs Italy: Montepulciano d'Abruzzo 13 2 Learning Outcomes"],"gis_raw":"GIs Italy: Montepulciano d’Abruzzo 13 2 Learning Outcomes"},{"key":"zinfandel","en":"Zinfandel/Primitivo","cn":"金芬黛","colour":"red","principal":false,"gis":["GIs USA: California Italy: Puglia"],"gis_raw":"GIs USA: California Italy: Puglia"},{"key":"pinotage","en":"Pinotage","cn":"皮諾塔吉","colour":"red","principal":false,"gis":["GIs South Africa: Western Cape"],"gis_raw":"GIs South Africa: Western Cape"},{"key":"carmenere","en":"Carmenère","cn":"卡門內爾","colour":"red","principal":false,"gis":["GIs Chile: Central Valley"],"gis_raw":"GIs Chile: Central Valley"},{"key":"malbec","en":"Malbec","cn":"馬爾貝克","colour":"red","principal":false,"gis":["GIs Argentina: Mendoza White grape varieties Characteristics Colour, s"],"gis_raw":"GIs Argentina: Mendoza White grape varieties Characteristics Colour, sugar (potential alcohol), acidity, aromas and flavours"},{"key":"chenin-blanc","en":"Chenin Blanc","cn":"白詩南","colour":"white","principal":false,"gis":["GIs France: Vouvray South Africa: Western Cape"],"gis_raw":"GIs France: Vouvray South Africa: Western Cape"},{"key":"semillon","en":"Sémillon","cn":"塞美蓉","colour":"white","principal":false,"gis":["GIs France: Sauternes Australia: Hunter Valley, Barossa Valley"],"gis_raw":"GIs France: Sauternes Australia: Hunter Valley, Barossa Valley"},{"key":"viognier","en":"Viognier","cn":"維歐尼耶","colour":"white","principal":false,"gis":["GIs France:","Northern Rhône: Condrieu"],"gis_raw":"GIs France: • Northern Rhône: Condrieu"},{"key":"gewurztraminer","en":"Gewurztraminer","cn":"格烏茲塔明那","colour":"white","principal":false,"gis":["GIs France: Alsace, Alsace Grand Cru"],"gis_raw":"GIs France: Alsace, Alsace Grand Cru"},{"key":"verdicchio","en":"Verdicchio","cn":"維蒂奇諾","colour":"white","principal":false,"gis":["GIs Italy: Verdicchio dei Castelli di Jesi"],"gis_raw":"GIs Italy: Verdicchio dei Castelli di Jesi"},{"key":"cortese","en":"Cortese","cn":"柯帝士","colour":"white","principal":false,"gis":["GIs Italy: Gavi"],"gis_raw":"GIs Italy: Gavi"},{"key":"garganega","en":"Garganega","cn":"卡爾卡內加","colour":"white","principal":false,"gis":["GIs Italy: Soave, Recioto di Soave"],"gis_raw":"GIs Italy: Soave, Recioto di Soave"},{"key":"fiano","en":"Fiano","cn":"菲亞諾","colour":"white","principal":false,"gis":["GIs Italy: Fiano di Avellino"],"gis_raw":"GIs Italy: Fiano di Avellino"},{"key":"albarino","en":"Albariño","cn":"阿爾巴利諾","colour":"white","principal":false,"gis":["GIs Spain: Rías Baixas"],"gis_raw":"GIs Spain: Rías Baixas"},{"key":"furmint","en":"Furmint","cn":"富爾民特","colour":"white","principal":false,"gis":["GIs Hungary: Tokaj"],"gis_raw":"GIs Hungary: Tokaj"}];
-const TASTINGS = [{"name":"Clase Azul Reposado","name_en":"Clase Azul Reposado — 100% blue Weber agave tequila, 8 months in American whiskey casks","lang":"es","type":"spirit","country":"Mexico","region":"Jalisco","appellation":"Tequila","grapes":[],"abv":40,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"images/tastings/undated-01.jpg","sat":{},"score":null,"note":"Producer's notes (claseazul.com): pale gold; medium to full body; cooked agave, agave nectar, candied orange peel, toasted wood, subtle hazelnut. Slow-cooked 100% blue Weber agave, rested 8 months in American whiskey casks, 40% ABV, ceramic decanter. — JOJO's own tasting note still to come.","id":"undated-01"}];
+const TASTINGS = [{"name":"Clase Azul Reposado","name_en":"Clase Azul Reposado — 100% blue Weber agave tequila, 8 months in American whiskey casks","lang":"es","type":"spirit","country":"Mexico","region":"Jalisco","appellation":"Tequila","grapes":[],"abv":40,"price":null,"currency":"HKD","venue":"","occasion":"","photo":"images/tastings/undated-01.jpg","sat":{},"score":null,"note":"Producer's notes (claseazul.com): pale gold; medium to full body; cooked agave, agave nectar, candied orange peel, toasted wood, subtle hazelnut. Slow-cooked 100% blue Weber agave, rested 8 months in American whiskey casks, 40% ABV, ceramic decanter. — JOJO's own tasting note still to come.","id":"undated-01","no":1}];
 
 const T = {
   zh:{tagline:'酒類品飲檔案', covk:'WSET L2 品種', sec:'酒藏', journal:'日誌', sort:'最新優先', sortScore:'按分數',
@@ -354,18 +329,21 @@ function card(x){
           <path d="M7 74h26" stroke-width=".8" opacity=".55"/>
         </svg>
       </div>`;
-  return `<article class="card" data-id="${esc(x.id)}">
+  const no=String(x.no||0).padStart(3,"0");
+  return `<a class="card" href="bottle-${no}/">
     ${x.sample?`<span class="tag">${LANG==='zh'?'樣本':'SAMPLE'}</span>`:''}
     ${x.score?`<span class="seal">${x.score}</span>`:''}
     ${img}
     <div class="body">
+      <div class="no">No. ${no}</div>
       <div class="nm">${esc(x.name)}</div>
       ${x.name_en?`<div class="nmen">${esc(x.name_en)}</div>`:''}
       ${(x.producer||x.vintage)?`<div class="pr">${esc([x.producer,x.vintage].filter(Boolean).join(' · '))}</div>`:''}
       <div class="rg">${esc([x.country,x.region].filter(Boolean).join(' · '))}</div>
       <div class="gr">${gs}</div>
+      <span class="go">view →</span>
     </div>
-  </article>`;
+  </a>`;
 }
 
 function renderGrid(){
@@ -380,9 +358,7 @@ function renderGrid(){
     $('#grid').innerHTML=`<div class="empty" style="grid-column:1/-1">${t('empty')}</div>`;
   }else{
     $('#grid').innerHTML=sorted.map(card).join('');
-    document.querySelectorAll('.card').forEach(el=>{
-      el.onclick=()=>openModal(el.dataset.id);
-    });
+    /* cards are plain links to their own bottle page — no modal */
   }
   renderJournal();
 }
@@ -391,55 +367,13 @@ function renderJournal(){
   const list=realTastings().filter(x=>x.date).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
   $('#jk').textContent=t('journal');
   $('#jn').textContent=list.length?`${list.length}`:'';
-  $('#jlist').innerHTML = list.length? list.map(x=>`<div class="jrow" data-id="${esc(x.id)}">
+  $("#jlist").innerHTML = list.length? list.map(x=>`<a class="jrow" href="bottle-${String(x.no||0).padStart(3,"0")}/">
       <span class="jd">${esc(x.date)}</span>
       <span class="jn">${esc(x.name)}</span>
       <span class="jv">${esc(x.venue||'—')}</span>
-      <span class="js">${x.score||'—'}</span></div>`).join('')
+      <span class="js">${x.score||'—'}</span></a>`).join('')
     : `<div class="jempty">${realTastings().length?t('jblankdate'):t('empty')}</div>`;
-  document.querySelectorAll('.jrow').forEach(el=>el.onclick=()=>openModal(el.dataset.id));
 }
-
-function kvBlock(title,obj){
-  if(!obj)return '';
-  const rows=Object.entries(obj).filter(([k,v])=>v&&(!Array.isArray(v)||v.length));
-  if(!rows.length)return '';
-  const label={clarity:'清晰度',intensity:'濃淡',colour:'顏色',condition:'狀態',aroma:'香氣',
-    development:'發展',sweetness:'甜度',acidity:'酸度',tannin:'單寧',alcohol:'酒精',body:'酒體',
-    flavour:'風味',finish:'餘韻',quality:'品質',price:'價位',ageing:'陳年'};
-  return `<div class="blk"><h3>${title}</h3><div class="kv">${rows.map(([k,v])=>
-    `<b>${LANG==='zh'?(label[k]||k):k}</b><span>${esc(Array.isArray(v)?v.join('、'):v)}</span>`).join('')}</div></div>`;
-}
-
-function openModal(id){
-  const x=TASTINGS.find(v=>v.id===id); if(!x)return;
-  const s=x.sat||{};
-  const sat=[kvBlock(LANG==='zh'?'外觀 APPEARANCE':'APPEARANCE',s.appearance),
-             kvBlock(LANG==='zh'?'香氣 NOSE':'NOSE',s.nose),
-             kvBlock(LANG==='zh'?'口感 PALATE':'PALATE',s.palate),
-             kvBlock(LANG==='zh'?'結論 CONCLUSIONS':'CONCLUSIONS',s.conclusion)].join('');
-  const rows=[['產區',[x.country,x.region].filter(Boolean).join(' · ')],
-              ['品種',(x.grapes||[]).map(nameOf).join('、')],
-              ['類型',typeOf(x.type)],
-              ['酒精',x.abv?x.abv+'%':''],
-              ['價錢',x.price?`${x.currency||'HK$'} ${x.price}`:''],
-              ['日期',x.date],['場合',x.venue],['分數',x.score]].filter(([k,v])=>v);
-  $('#mbox').innerHTML=`<button class="mclose" id="mclose">✕</button>
-    ${x.photo?`<img class="mimg" src="${esc(x.photo)}" alt="${esc(x.name)}">`:''}
-    <div class="mbody">
-      <h2>${esc(x.name)}</h2>
-      ${x.name_en?`<div class="mtr">${esc(x.name_en)}</div>`:''}
-      <div class="sub">${esc([x.producer,x.vintage].filter(Boolean).join(' · '))}</div>
-      <div class="rows">${rows.map(([k,v])=>`<div><b>${k}</b><span>${esc(v)}</span></div>`).join('')}</div>
-      ${sat?`<div class="sat">${sat}</div>`:''}
-      ${x.note?`<div class="note">${esc(x.note)}</div>`:''}
-    </div>`;
-  $('#modal').classList.add('open');
-  $('#mclose').onclick=closeModal;
-}
-function closeModal(){$('#modal').classList.remove('open');}
-$('#modal').onclick=(e)=>{if(e.target.id==='modal')closeModal();};
-document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeModal();});
 
 $('#q').oninput=(e)=>{QUERY=e.target.value.trim();renderGrid();};
 $('#sortbtn').onclick=()=>{BY_SCORE=!BY_SCORE;renderFilters();renderGrid();};
@@ -452,6 +386,13 @@ document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{
 });
 
 renderStats();renderCoverage();renderFilters();renderGrid();
+
+/* site visit counter — external service; renders nothing if it fails */
+fetch('https://abacus.jasoncameron.dev/hit/'+"just-drink"+'/site')
+  .then(r=>r.json())
+  .then(d=>{ if(d && typeof d.value==='number'){ const el=$('#siteviews');
+      el.textContent=d.value+(d.value===1?' visit':' visits'); el.hidden=false; } })
+  .catch(()=>{});
 </script>
 </body>
 </html>
