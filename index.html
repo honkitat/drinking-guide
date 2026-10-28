@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>j-drinking｜a drinking archive</title>
+<title>j-drinking</title>
 <meta name="description" content="j-drinking — a personal archive of every wine, spirit, sake and beer I taste.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -198,7 +198,6 @@ footer .dot{opacity:.4;margin:0 6px}
 
 <div class="masthead">
   <div class="big">醇</div>
-  <div class="sub" id="tagline">a drinking archive</div>
   <div class="rule"></div>
 </div>
 
@@ -269,7 +268,6 @@ function renderStats(){
   const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):'—';
   const cells=[[list.length,t('k_bottles')],[grapes.size,t('k_grapes')],[countries.size,t('k_countries')],[avg,t('k_avg')]];
   $('#stats').innerHTML=cells.map(([v,k])=>`<div class="stat"><div class="v">${v}</div><div class="k">${k}</div></div>`).join('');
-  $('#tagline').textContent=t('tagline');
 }
 
 function renderCoverage(){
